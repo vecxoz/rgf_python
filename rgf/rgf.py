@@ -3,6 +3,8 @@ import platform
 import subprocess
 from glob import glob
 import numpy as np
+import sys
+import stat
 
 from sklearn.base import BaseEstimator
 from sklearn.base import ClassifierMixin
@@ -17,13 +19,20 @@ LINUX = 'Linux'
 ## Edit this ##################################################
 if sys_name == WINDOWS:
     #Location of the RGF executable
-    loc_exec = 'C:\\Users\\rf\\Documents\\python\\rgf1.2\\bin\\rgf.exe'
+    loc_exec = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'rgf.exe')
     default_exec = 'rgf.exe'
-    loc_temp = 'temp/'
+    loc_temp = os.path.join(os.path.expanduser('~'), 'rgf_temp')
 elif sys_name == LINUX:
-    loc_exec = '/opt/rgf1.2/bin/rgf'
-    loc_temp = '/tmp/rgf'
+    loc_exec = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'rgf')
+    loc_temp = os.path.join(os.path.expanduser('~'), 'rgf_temp')
     default_exec = 'rgf'
+    # Set execution permission (for owner only)
+    try:
+        info = os.stat(loc_exec) # get file info
+        if not (info.st_mode & stat.S_IXUSR): # if has no exe permission
+            os.chmod(loc_exec, info.st_mode | stat.S_IXUSR) # set exe permission
+    except:
+        print('Error, while setting execution permission:\n%s' % sys.exc_info()[1])
 
 ## End Edit ##################################################
 def is_default_executable_in_path():
