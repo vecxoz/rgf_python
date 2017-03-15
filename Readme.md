@@ -48,10 +48,12 @@ print(cross_val_score(model, X, y, cv = 5))
 
 **Hyperparameter tuning:**
 
+* [Ditails on hyperparameter tuning](http://tongzhang-ml.org/software/rgf/rgf1.2-guide.pdf)
 * *max_leaf*: Appropriate values are data-dependent and vary from 1000 to 10000.
-* *test_interva*l: For efficiency, it must be either multiple or divisor of 100 (default of the optimization interval).
-* *algorithm*: You can select "RGF", "RGF Opt" or "RGF Sib"
+* *test_interval*: For efficiency, it must be either multiple or divisor of 100.
+* *algorithm*: 'RGF', 'RGF_Opt' or 'RGF_Sib'
 * *loss*: "LS", "Log" or "Expo".
-* *reg_depth*: Must be no smaller than 1. Meant for being used with algorithm = "RGF Opt" or "RGF Sib".
-* *l2*: Either 1, 0.1, or 0.01 often produces good results though with exponential loss (loss=Expo) and logistic loss (loss=Log) some data requires smaller values such as 1e-10 or 1e-20
-* *sl2*: Default is equal to ls. On some data, λ/100 works well
+* *reg_depth*: Must be no smaller than 1. Meant for being used with *algorithm*='RGF_Opt' or 'RGF_Sib'.
+* *l2*: Either 1, 0.1, or 0.01 often produces good results though with exponential loss (*loss*='Expo') and logistic loss (*loss*='Log') some data requires smaller values such as 1e-10 or 1e-20
+* *sl2*: By default equal to *l2*. On some data, *l2*/100 works well
+
