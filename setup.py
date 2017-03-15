@@ -25,5 +25,6 @@ setup(name='rgf_sklearn',
       license="Apache License 2.0",
       packages=find_packages(),
       long_description=read_md('Readme.md'),
+      package_data={'rgf': ['rgf', 'rgf.exe']},
 )
 
