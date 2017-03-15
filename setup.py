@@ -26,5 +26,9 @@ setup(name='rgf_sklearn',
       packages=find_packages(),
       long_description=read_md('Readme.md'),
       package_data={'rgf': ['rgf', 'rgf.exe']},
+      install_requires=[
+          'numpy',
+          'scikit-learn>=0.18'
+      ]
 )
 
